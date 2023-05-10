@@ -2,4 +2,51 @@
 
 #1.Реалізувати алгоритм бінарного пошуку за допомогою рекурсії.
 
-#2.Прочитати про Fibonacci search та імплементуйте його за допомогою Python. Визначте складність алгоритму та порівняйте його з бінарним пошуком
+#2.Прочитати про Fibonacci search та імплементуйте його за допомогою Python. 
+#Визначте складність алгоритму та порівняйте його з бінарним пошуком
+
+
+def fibonacci_search(arr, x):
+    
+    fib2 = 0 # (n-2)th Fibonacci number
+    fib1 = 1 # (n-1)th Fibonacci number
+    fib = fib1 + fib2 # nth Fibonacci number
+    
+    # Find smallest Fibonacci number greater than or equal to length of array
+    while fib < len(arr):
+        fib2 = fib1
+        fib1 = fib
+        fib = fib1 + fib2
+    
+ 
+    offset = -1
+    
+    
+    while fib > 1:
+        
+        i = min(offset + fib2, len(arr)-1)
+        
+
+        if arr[i] < x:
+            fib = fib1
+            fib1 = fib2
+            fib2 = fib - fib1
+            offset = i
+        
+        
+        elif arr[i] > x:
+            fib = fib2
+            fib1 = fib1 - fib2
+            fib2 = fib - fib1
+        
+        
+        else:
+            return i
+    
+   
+    if arr[offset+1] == x:
+        return offset+1
+    else:
+        return -1
+
+ n),  n is the length of  input array.
